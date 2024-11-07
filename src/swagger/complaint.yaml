@@ -1,0 +1,25 @@
+paths:
+  /complaints:
+    get:
+      summary: Retrieve all complaints
+      tags: [Complaints]
+      responses:
+        200:
+          description: List of complaints
+    post:
+      summary: Add a new complaint
+      tags: [Complaints]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                complaint:
+                  type: string
+      responses:
+        201:
+          description: Complaint added

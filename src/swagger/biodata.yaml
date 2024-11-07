@@ -1,0 +1,31 @@
+paths:
+  /biodata:
+    get:
+      summary: Get all biodata entries
+      tags: [Biodata]
+      responses:
+        200:
+          description: A list of biodata entries
+    post:
+      summary: Create a new biodata entry
+      tags: [Biodata]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Biodata'
+      responses:
+        201:
+          description: Biodata entry created
+components:
+  schemas:
+    Biodata:
+      type: object
+      properties:
+        nama:
+          type: string
+        ttl:
+          type: string
+        umur:
+          type: integer
