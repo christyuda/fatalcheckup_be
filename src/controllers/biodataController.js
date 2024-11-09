@@ -45,6 +45,35 @@ exports.getBiodataByUserId = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+exports.updateBiodata = async (req, res) => {
+  const { userId } = req.params;
+  const { nama, ttl, umur, kehamilanKe, harapan, persalinanSecara, tempatDanPenolong, biayaDanKendaraan } = req.body;
+
+  try {
+    const updatedBiodata = await Biodata.findOneAndUpdate(
+      { userId: userId }, // Filter by userId
+      { 
+        nama, 
+        ttl, 
+        umur, 
+        kehamilanKe, 
+        harapan, 
+        persalinanSecara, 
+        tempatDanPenolong, 
+        biayaDanKendaraan 
+      },
+      { new: true, runValidators: true } 
+    );
+
+    if (!updatedBiodata) {
+      return res.status(404).json({ message: 'Biodata not found' });
+    }
+
+    res.status(200).json({ message: 'Biodata updated successfully', updatedBiodata });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
 
 exports.createBiodata = async (req, res) => {
   const { nama, ttl, umur, kehamilanKe, harapan, persalinanSecara, tempatDanPenolong, biayaDanKendaraan } = req.body;
