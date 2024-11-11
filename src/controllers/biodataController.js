@@ -26,6 +26,8 @@ exports.getBiodataByUserId = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
+    //
+
     // Include email in the response
     res.status(200).json({
       _id: biodata._id,
